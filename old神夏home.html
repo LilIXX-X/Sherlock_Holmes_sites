@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏洛克探案集 - 首页</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('./bgimage.gif'); /* 替换为你的GIF图片URL */
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    header {
+      position: relative;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .site-title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      cursor: pointer;
+      font-size: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      color: white;
+    }
+
+    .nav {
+      position: absolute;
+      top: 4.5rem;
+      right: 2rem;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav a:hover {
+      color: crimson;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 20vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .typed-text {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 4px black;
+      min-height: 2.5rem;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <header>
+    <div class="site-title">神探夏洛克</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰ 菜单</button>
+    <nav class="nav" id="navMenu">
+      <a href="神夏home.html">首页 HOME</a>
+      <a href="神夏introduction.html">简介 INTRODUCTION</a>
+      <a href="神夏story.html">案件 STORY</a>
+      <a href="神夏character.html">角色 CHARACTERS</a>
+      <a href="神夏map.html">地图 MAP</a>
+      <a href="神夏community.html">AdAption社区 COMMUNITY</a>
+    </nav>
+  </header>
+  <main class="hero">
+    <h1>Hello, this is Sherlock Holmes</h1>
+    <div class="typed-text">
+      <span id="typed"></span>
+    </div>
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('navMenu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: { enable: true, value_area: 800 }
+        },
+        color: { value: '#ffffff' },
+        shape: {
+          type: 'circle',
+          stroke: { width: 0, color: '#000000' }
+        },
+        opacity: {
+          value: 0.2,
+          random: true
+        },
+        size: {
+          value: 3,
+          random: true
+        },
+        move: {
+          enable: true,
+          speed: 0.6,
+          direction: 'none',
+          out_mode: 'out'
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          repulse: { distance: 80 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+
+    new Typed('#typed', {
+      strings: [
+        '“当你排除了一切不可能的因素，剩下的不管多么不可思议，必定是真相。”',
+        '探索雾都伦敦的黑暗角落',
+        '破解谜题，揭露真相，迎接挑战！'
+      ],
+      typeSpeed: 40,
+      backSpeed: 20,
+      backDelay: 2000,
+      loop: true
+    });
+  </script>
+</body>
+</html>

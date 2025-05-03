@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏洛克探案集 - 案件一览</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: url('故事背景.png') no-repeat center center fixed; 
+      background-size: cover;
+      color: #476066;
+      padding: 3rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .site-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: crimson;
+    }
+
+    .season-selector {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .season-button {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #333;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .season-button:hover {
+      background-color: #333;
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .episode-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .episode-button {
+      background: rgba(240, 240, 240, 0.95);
+      border: 1px solid #666;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .episode-button:hover {
+      background-color: #077A7D;
+      color: white;
+    }
+
+    .episode-content {
+      display: none;
+      text-align: center;
+    }
+
+    .episode-images {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .episode-images img {
+      width: 600px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+    .slider-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .slider-buttons button {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .slider-buttons button:hover {
+      background-color: #077A7D;
+    }
+      .episode-content {
+        display: none;
+        text-align: center;
+        opacity: 0;
+        transform: rotateY(-10deg);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .episode-content.show {
+    display: block;
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-title">神探夏洛克</div>
+    <nav>
+        <a href="神夏home.html">首页</a>
+        <a href="神夏introduction.html">简介</a>
+        <a href="神夏story.html">案件</a>
+        <a href="神夏character.html">角色</a>
+        <a href="神夏map.html">地图</a>
+        <a href="神夏community.html">论坛</a>
+    </nav>
+  </header>
+
+  <div class="season-selector">
+    <button class="season-button" onclick="showSeason(1)">S1</button>
+    <button class="season-button" onclick="showSeason(2)">S2</button>
+    <button class="season-button" onclick="showSeason(3)">S3</button>
+    <button class="season-button" onclick="showSeason(4)">S4</button>
+  </div>
+
+  <div id="episodeList" class="episode-list"></div>
+  <div id="episodeContent" class="episode-content">
+    <h2 id="episodeTitle"></h2>
+    <p id="episodeDescription"></p>
+    <div class="episode-images">
+      <img id="episodeImage" src="" alt="剧照">
+      <div class="slider-buttons">
+        <button onclick="changeImage(-1)">·previous·</button>
+        <button onclick="changeImage(1)">·next·</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      1: [
+        {
+          title: '#1 连环粉红命案',
+          text: '一位从阿富汗退役回国的战争英雄，邂逅了一位古怪却魅力非凡的天才。一连串不可思议的自杀案让苏格兰场束手无策…',
+          images: ['S1EP1.png', '1季1集.png']
+        },
+        {
+          title: '#2 盲眼银行家',
+          text: '伦敦各地的墙壁上都写着一段神秘的密码，第一个看到它的人在阅读后数小时内便会死亡。他们能破案吗？',
+          images: ['s2ep2.png', '1季2集.png']
+        },
+        {
+          title: '#3 伟大的游戏',
+          text: '空荡荡的房间里的奇怪线索，一辆血迹斑斑的汽车，一位价值连城的老大师，一个精神失常的炸弹客。与Moriarty博弈的序幕拉开…',
+          images: ['s1ep3.png', '1季3集.png']
+        }
+      ],
+      2: [
+        {
+          title: '#1 贝尔戈维亚丑闻',
+          text: '泄露的照片威胁着政府要员，但对于夏洛克和约翰来说，这场游戏的意义远不止于此。',
+          images: ['s2e1.png', '2季1集.png']
+        },
+        {
+          title: '#2 巴斯克维尔猎犬',
+          text: '杀死其父的怪物？恐怖的黑影？伴随夜幕降临疯狂的犬吠？童年阴影的轮廓渐渐清晰…',
+          images: ['s2e2.png', '2季2集.png']
+        },
+        {
+          title: '#3 莱辛巴赫坠落',
+          text: '莫里亚蒂回归，世纪大案登上报纸头条。宿敌针锋相对，夏洛克竟在众目睽睽之下坠楼身亡？墓碑后面隐藏着什么真相？',
+          images: ['s2e3.png', '2季3集.png']
+        }
+      ], 
+      3: [
+        {
+          title: '#1 空荡荡的灵车',
+          text: '伦敦正面临一场大规模恐怖袭击的威胁，夏洛克复活，just one more miracle箴言成真。',
+          images: ['s3e1.png', '3季1集.png']
+        },
+        {
+          title: '#2 标志三',
+          text: '夏洛克面临着最大的挑战——在约翰的婚礼当天发表伴郎致辞。',
+          images: ['s3e2.png', '3季2集.png']
+        },
+        {
+          title: '#3 他最后的誓言',
+          text: '夏洛克遇见马格努森，他将如何应对位擅长敲诈勒索、深谙西方世界所有知名人士弱点的敌人。',
+          images: ['s3e3.png', '3季3集.png']
+        }
+      ], 
+      4: [
+        {
+          title: '#1 毁坏的撒切尔夫人像',
+          text: '一场令警方百思不得其解的神秘案件：为什么有人要毁掉已故首相玛格丽特·撒切尔的肖像？这一切的根源都在于玛丽·沃森的过去……',
+          images: ['s4e1.png', '4季1集.png']
+        },
+        {
+          title: '#2 侦探在说谎',
+          text: '夏洛克面临的可能是他漫长职业生涯中最令人恐惧的敌人：麦片达人还是连环杀手？打开记忆宫殿之门的黑暗密码。',
+          images: ['s4e2.png', '4季2集.png']
+        },
+        {
+          title: '#3 最后的东风',
+          text: '有人一直在玩一场旷日持久的博弈，孤身一人、毫无防备的夏洛克和华生面临着他们人生中最大的挑战。这场博弈终于结束了吗？',
+          images: ['s4e3.png', '4季3集.png']
+        }
+      ]
+    };
+
+    let currentImages = [], currentImageIndex = 0;
+
+    function showSeason(season) {
+      const list = document.getElementById('episodeList');
+      list.innerHTML = '';
+      document.getElementById('episodeContent').style.display = 'none';
+      data[season].forEach((ep, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'episode-button';
+        btn.textContent = ep.title;
+        btn.onclick = () => showEpisode(season, idx);
+        list.appendChild(btn);
+      });
+      list.style.display = 'flex';
+    }
+
+    function showEpisode(season, index) {
+      const ep = data[season][index];
+      const content = document.getElementById('episodeContent');
+      document.getElementById('episodeTitle').textContent = ep.title;
+      document.getElementById('episodeDescription').textContent = ep.text;
+      currentImages = ep.images;
+      currentImageIndex = 0;
+      document.getElementById('episodeImage').src = currentImages[0];
+
+      content.classList.remove('show'); // 清除旧动画类
+      content.style.display = 'block';
+      setTimeout(() => content.classList.add('show'), 10); // 触发动画
+}
+
+
+    function changeImage(dir) {
+      if (currentImages.length === 0) return;
+      currentImageIndex = (currentImageIndex + dir + currentImages.length) % currentImages.length;
+      document.getElementById('episodeImage').src = currentImages[currentImageIndex];
+    }
+  </script>
+</body>
+</html>

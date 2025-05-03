@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>夏洛克探案集 - 角色页</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('bgimgstory (1).png') no-repeat center center fixed;
+      background-size: cover;
+      padding: 2rem;
+      color: #2c2c2c;
+      margin: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .site-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: crimson;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 3rem auto 5rem;
+      font-size: 2rem;
+      font-family:Georgia, 'Times New Roman', Times, serif;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+      max-width: 800px;
+      line-height: 1.8;
+    }
+
+    .character-card {
+      width: 100%;
+      max-width: 960px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      background: rgba(245, 245, 245, 0.95);
+      border-radius: 16px;
+      padding: 1rem 2rem;
+      margin: 0 auto;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: #2c2c2c;
+      border: 2px solid transparent;
+      position: relative;
+    }
+
+    .character-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+      background: rgba(250, 250, 250, 0.7);
+      border-color: #6e6e6e;
+    }
+
+    .character-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #ccc 0%, #eee 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .character-card:hover::before {
+      opacity: 1;
+    }
+
+    .character-card img {
+      width: 180px;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 12px;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 4px 4px 14px rgba(0,0,0,0.25);
+      border: 3px solid #444;
+    }
+
+    /* 单独调整角色图像位置 */
+    .character-card[href="sherlock.html"] img {
+      object-position: center top;
+    }
+
+    .character-card[href="mycroft.html"] img {
+      object-position: right center;
+    }
+
+    .character-card[href="hudson.html"] img {
+      object-position: left center;
+    }
+
+    .character-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1.6;
+      text-align: left;
+      font-family: 'Georgia', serif;
+      color: #1a1a1a;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 6rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-title">神探夏洛克</div>
+    <nav>
+        <a href="神夏home.html">首页</a>
+        <a href="神夏introduction.html">简介</a>
+        <a href="神夏story.html">案件</a>
+        <a href="神夏character.html">角色</a>
+        <a href="神夏map.html">地图</a>
+        <a href="神夏community.html">论坛</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    CHARACTER
+  </div>
+
+  <div class="row">
+    <a href="sherlock_ch.html" class="character-card">
+      <img src="夏洛克-fotor-ai-art-effects-20250419201732.jpg" alt="夏洛克">
+      <div class="character-name">
+        Sherlock Holmes<br>夏洛克·福尔摩斯
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="watson_ch.html" class="character-card">
+      <img src="华生-fotor-ai-art-effects-20250419202925.jpg" alt="华生">
+      <div class="character-name">
+        John Watson<br>约翰·华生
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="mycroft_ch.html" class="character-card">
+      <img src="麦考夫-fotor-ai-art-effects-20250420120123.jpg" alt="麦考夫">
+      <div class="character-name">
+        Mycroft Holmes<br>麦考夫
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="lestrade_ch.html" class="character-card">
+      <img src="lestrade-n.jpg" alt="雷斯垂德">
+      <div class="character-name">
+        DI Greg Lestrade<br>雷斯垂德探长
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="mary_ch.html" class="character-card">
+      <img src="mary-n.jpg" alt="玛丽">
+      <div class="character-name">
+        Mary Morstan<br>玛丽
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="irene_ch.html" class="character-card">
+      <img src="艾琳-fotor-ai-art-effects-20250420120335.jpg" alt="艾琳">
+      <div class="character-name">
+        Irene Adler<br>艾琳
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="moriarty_ch.html" class="character-card">
+      <img src="moriaty-n.jpg" alt="莫里亚蒂">
+      <div class="character-name">
+        Jim Moriarty<br>莫里亚蒂
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="hudson_ch.html" class="character-card">
+      <img src="回响2-fotor-ai-art-effects-20250420120229.jpg" alt="哈德逊太太">
+      <div class="character-name">
+        Mrs Hudson<br>哈德逊太太
+      </div>
+    </a>
+  </div>
+
+  <div class="row">
+    <a href="molly_ch.html" class="character-card">
+      <img src="molly-n.jpg" alt="茉莉">
+      <div class="character-name">
+        Molly Hooper<br>茉莉
+      </div>
+    </a>
+  </div>
+
+</body>
+</html>
